@@ -13,7 +13,8 @@ model ConvexWithPlaneForceContactTest
 	Body body(
 				dynamics(
 					r_0(start = {0, 0, 1}),
-					v_0(start = {1, 0, 0})
+					v_0(start = {1, 0, 0}),
+					w_a(start = {0, 1, 0})
 				)
 	);
 	Contact contact;
