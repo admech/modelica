@@ -1,8 +1,7 @@
 within Dev.Test.Bodies.Contact;
-
-model ConvexWithPlaneForceContactTest
+model ConvexWithPlaneForceContactTestQuaternion
 	import Body = Dev.Bodies.Contact.Impl.ContactingSphereBody;
-	import Dynamics = Dev.Bodies.SimpleBodyDynamics;
+	import Dynamics = Dev.Bodies.SimpleBodyDynamicsQuaternion;
 	import Contact = Dev.Bodies.Contact.Trackers.ConvexWithPlaneForceContactTracker;
 	import World = Dev.World;
 
@@ -14,8 +13,7 @@ model ConvexWithPlaneForceContactTest
 				dynamics(
 					r_0(start = {0, 0, 1}),
 					v_0(start = {1, 0, 0}),
-					w_a(start = {0, 1, 0}),
-					R_start(T = identity(3), w = {0, 1, 0})
+					w_start = {0,0.5,0}
 				)
 	);
 	Contact contact;
@@ -29,6 +27,8 @@ model ConvexWithPlaneForceContactTest
 	
 	Real masscenterVelocity;
 	Real contactPointVelocity;
+	Real w2;
+	Real r_start_w_2;
 	
 	Boolean testOK;
 equation
@@ -41,9 +41,11 @@ equation
 	tangentForce = norm(contact.tangentForce);
 	normalForce = norm(contact.normalForce);
 	normalForce_3 = contact.normalForce[3];
+	r_start_w_2 = body.dynamics.R_start.w[2];
 	
 	masscenterVelocity = body.dynamics.v_0[1];
 	contactPointVelocity = contact.contactPointVelocityGlobal[1];
+	w2 = body.dynamics.frame_a.R.w[2];
 
 	connect(body.port, contact.port);	
-end ConvexWithPlaneForceContactTest;
+end ConvexWithPlaneForceContactTestQuaternion;

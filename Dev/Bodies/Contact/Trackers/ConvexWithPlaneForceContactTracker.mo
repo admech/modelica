@@ -7,7 +7,7 @@ model ConvexWithPlaneForceContactTracker
 	replaceable function getTangentForce
 		input Real[3] normalForce;
 		input Real[3] contactRelativeVelocity;
-		parameter Real koef = 1;
+		parameter Real koef = 0.1;
 		output Real[3] force;
 	algorithm
 		if norm(contactRelativeVelocity) < 0.0001 then

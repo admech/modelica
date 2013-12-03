@@ -1,6 +1,6 @@
 within Dev.Bodies.Contact;
 
-model BaseContactingBody extends Dev.Bodies.DynamicBody;
+model BaseContactingBody extends Dev.Bodies.DynamicBodyQuaternion;
 	import Dev.Interfaces.ContactPort;
 	import Surface = Dev.Surfaces.BaseSurface;
 
